@@ -1,5 +1,5 @@
-const logger = require('./startup/logging');
 require("dotenv").config({ path: "./config/.env" });
+const logger = require('./startup/logging');
 const express = require('express')
 const app = express();
 const server = require('http').createServer(app);

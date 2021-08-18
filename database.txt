@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS `main_rects`;
+CREATE TABLE IF NOT EXISTS `main_rects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  `width` int(11) NOT NULL,
+  `height` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+DROP TABLE IF EXISTS `overlap_rects`;
+CREATE TABLE IF NOT EXISTS `overlap_rects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  `width` int(11) NOT NULL,
+  `height` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `main_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `main_id` (`main_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+ALTER TABLE `overlap_rects`
+  ADD CONSTRAINT `overlap_rects_ibfk_1` FOREIGN KEY (`main_id`) REFERENCES `main_rects` (`id`) ON DELETE CASCADE;
+COMMIT;
